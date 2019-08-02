@@ -1,19 +1,91 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
-import "../../styles/home.scss";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import "../../styles/demo.scss";
 
 export class Home extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			view: null
+		};
+	}
 	render() {
 		return (
-			<div className="text-center mt-5">
-				<h1>Hello Rigo!</h1>
-				<p>
-					<img src={rigoImage} />
-				</p>
-				<a href="#" className="btn btn-success">
-					If you see this green button, bootstrap is working
-				</a>
+			<div className="container">
+				<div className="row">
+					<div className="col bg-dark">H</div>
+					<div className="col bg-danger">HI</div>
+					<div className="col bg-info">HELLO</div>
+				</div>
+				<Context.Consumer>
+					{({ store, actions }) => {
+						return (
+							<div>
+								{store.people.map((item, index) => {
+									return (
+										<div key={index}>
+											{item.name}
+											<button
+												className="btn btn-success"
+												onClick={() => actions.addToFavorites(index, item.name)}>
+												Add to Favorites
+											</button>
+											<button
+												className="btn btn-success"
+												onClick={() => this.setState({ view: "one" })}>
+												Add to Favorites
+											</button>
+										</div>
+									);
+								})}
+								{store.planets.map((item, index) => {
+									return (
+										<div key={index}>
+											{item.name}
+											<button
+												className="btn btn-success"
+												onClick={() => actions.addToFavorites(index, item.name)}>
+												Add to Favorites
+											</button>
+										</div>
+									);
+								})}
+								{store.vehicles.map((item, index) => {
+									return (
+										<div key={index}>
+											{item.name}
+											<button
+												className="btn btn-success"
+												onClick={() => actions.addToFavorites(item.name)}>
+												Add to Favorites
+											</button>
+										</div>
+									);
+								})}
+								{store.vehicles.map((item, index) => {
+									return (
+										<div key={index}>
+											{item.name}
+											<button
+												className="btn btn-success"
+												onClick={() => actions.addToFavorites(item.name)}>
+												Add to Favorites
+											</button>
+										</div>
+									);
+								})}
+							</div>
+						);
+					}}
+				</Context.Consumer>
 			</div>
 		);
 	}
 }
+
+//                                      <button
+// 											className="btn btn-success"
+// 											onClick={() => actions.changeColor(index, "orange")}>
+// 											Change Color
+// 										</button>

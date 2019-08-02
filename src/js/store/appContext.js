@@ -22,9 +22,23 @@ const injectContext = PassedComponent => {
 		}
 
 		componentDidMount() {
+			// FETCHING PEOPLE
+
 			fetch("https://swapi.co/api/people/")
 				.then(resp => resp.json())
 				.then(({ results: people }) => this.setState({ store: { ...this.state.store, people } }));
+
+			// FETCHING PLANETS
+
+			fetch("https://swapi.co/api/planets/")
+				.then(resp => resp.json())
+				.then(({ results: planets }) => this.setState({ store: { ...this.state.store, planets } }));
+
+			// FETCHING VEHICLES
+
+			fetch("https://swapi.co/api/vehicles/")
+				.then(resp => resp.json())
+				.then(({ results: vehicles }) => this.setState({ store: { ...this.state.store, vehicles } }));
 		}
 
 		render() {
