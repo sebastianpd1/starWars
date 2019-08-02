@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { List } from "../component/list";
 import "../../styles/demo.scss";
 
 export class Home extends React.Component {
@@ -19,16 +18,30 @@ export class Home extends React.Component {
 					return (
 						<div className="container text-center">
 							<div className="row">
-								<div className="col">
-									<div className="row" onClick={() => this.setState({ list: "Planets" })}>
-										{"Planets"}
-									</div>
-									<div className="row">{"People"}</div>
-									<div className="row">{"Vehicles"}</div>
+								<div className="col" onClick={() => this.setState({ list: ["a", "b", "c", "d"] })}>
+									{store.people.map((item, index) => {
+										return (
+											<div key={index}>
+												{item.name}
+												<button
+													className="btn btn-success"
+													onClick={() => actions.addToFavorites(index, item.name)}>
+													Add to Favorites
+												</button>
+												<button
+													className="btn btn-success"
+													onClick={() => this.setState({ view: "one" })}>
+													Add to Favorites
+												</button>
+											</div>
+										);
+									})}
 								</div>
 								{this.state.list && (
 									<div className="col">
-										<List toShow={this.state.list} />
+										{this.state.list.map((e, i) => {
+											return <div key={i}>{e}</div>;
+										})}
 									</div>
 								)}
 							</div>
