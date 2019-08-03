@@ -1,11 +1,6 @@
 const getState = ({ getStore, setStore }) => {
 	return {
-		store: {
-			people: [],
-			planets: [],
-			vehicles: [],
-			favorites: []
-		},
+		store: { people: [], planets: [], vehicles: [], favorites: [] },
 		actions: {
 			addToFavorites: itemName => {
 				const store = getStore();

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { List } from "../component/list";
+import { Single } from "../component/single";
 import "../../styles/demo.scss";
 
 export class Home extends React.Component {
@@ -12,23 +13,36 @@ export class Home extends React.Component {
 			single: null
 		};
 	}
+
+	saveToState(item) {}
+
 	render() {
 		return (
 			<Context.Consumer>
-				{({ store, actions }) => {
+				{({ actions }) => {
 					return (
-						<div className="container text-center">
+						<div className="container">
 							<div className="row">
-								<div className="col">
-									<div className="row" onClick={() => this.setState({ list: "Planets" })}>
-										{"Planets"}
+								<div className="col-1" />
+								<div className="col-2">
+									<div className="row" onClick={() => this.setState({ list: "planets" })}>
+										Planets
 									</div>
-									<div className="row">{"People"}</div>
-									<div className="row">{"Vehicles"}</div>
+									<div className="row">People</div>
+									<div className="row">Vehicles</div>
 								</div>
 								{this.state.list && (
+									<div className="col-3">
+										<List
+											toShow={this.state.list}
+											setSingle={item => this.setState({ single: item })}
+											//setSingle={(item) => this.saveToState(item)}
+										/>
+									</div>
+								)}
+								{this.state.single && (
 									<div className="col">
-										<List toShow={this.state.list} />
+										<Single toShowAfter={this.state.single} />
 									</div>
 								)}
 							</div>

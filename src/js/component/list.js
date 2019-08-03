@@ -5,79 +5,25 @@ import PropTypes from "prop-types";
 import "../../styles/demo.scss";
 
 export class List extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			list: null,
-			single: null
-		};
-	}
 	render() {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
-					return this.props.toShow == "Planets" ? (
+					return (
 						<div>
-							{store.people.map((item, index) => {
+							{store[this.props.toShow].map((item, index) => {
 								return (
-									<div key={index}>
+									<div key={index} onClick={() => this.props.setSingle(item)}>
 										{item.name}
 										<button
 											className="btn btn-success"
-											onClick={() => actions.addToFavorites(index, item.name)}>
-											Add to Favorites
-										</button>
-										<button
-											className="btn btn-success"
-											onClick={() => this.setState({ view: "one" })}>
+											onClick={() => actions.addToFavorites(index, item)}>
 											Add to Favorites
 										</button>
 									</div>
 								);
 							})}
 						</div>
-					) : this.props.toShow == "People" ? (
-						<div>
-							{store.people.map((item, index) => {
-								return (
-									<div key={index}>
-										{item.name}
-										<button
-											className="btn btn-success"
-											onClick={() => actions.addToFavorites(index, item.name)}>
-											Add to Favorites
-										</button>
-										<button
-											className="btn btn-success"
-											onClick={() => this.setState({ view: "one" })}>
-											Add to Favorites
-										</button>
-									</div>
-								);
-							})}
-						</div>
-					) : this.props.toShow == "Vehicles" ? (
-						<div>
-							{store.people.map((item, index) => {
-								return (
-									<div key={index}>
-										{item.name}
-										<button
-											className="btn btn-success"
-											onClick={() => actions.addToFavorites(index, item.name)}>
-											Add to Favorites
-										</button>
-										<button
-											className="btn btn-success"
-											onClick={() => this.setState({ view: "one" })}>
-											Add to Favorites
-										</button>
-									</div>
-								);
-							})}
-						</div>
-					) : (
-						<div>NOTHING TO SHOW</div>
 					);
 				}}
 			</Context.Consumer>
@@ -86,5 +32,6 @@ export class List extends React.Component {
 }
 
 List.propTypes = {
-	toShow: PropTypes.string
+	toShow: PropTypes.string,
+	setSingle: PropTypes.func
 };

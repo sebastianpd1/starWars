@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 import "../../styles/demo.scss";
 
-export class Home extends React.Component {
+export class Single extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -12,76 +13,10 @@ export class Home extends React.Component {
 		};
 	}
 	render() {
-		return (
-			<div className="container">
-				<Context.Consumer>
-					<div className="row">
-						<div className="col bg-dark">
-							{({ store, actions }) => {
-								return (
-									<div className="row">
-										{store.people.map((item, index) => {
-											return (
-												<div key={index}>
-													{item.name}
-													<button
-														className="btn btn-success"
-														onClick={() => actions.addToFavorites(index, item.name)}>
-														Add to Favorites
-													</button>
-													<button
-														className="btn btn-success"
-														onClick={() => this.setState({ view: "one" })}>
-														Add to Favorites
-													</button>
-												</div>
-											);
-										})}
-										{store.planets.map((item, index) => {
-											return (
-												<div key={index}>
-													{item.name}
-													<button
-														className="btn btn-success"
-														onClick={() => actions.addToFavorites(index, item.name)}>
-														Add to Favorites
-													</button>
-												</div>
-											);
-										})}
-										{store.vehicles.map((item, index) => {
-											return (
-												<div key={index}>
-													{item.name}
-													<button
-														className="btn btn-success"
-														onClick={() => actions.addToFavorites(item.name)}>
-														Add to Favorites
-													</button>
-												</div>
-											);
-										})}
-										{store.vehicles.map((item, index) => {
-											return (
-												<div key={index}>
-													{item.name}
-													<button
-														className="btn btn-success"
-														onClick={() => actions.addToFavorites(item.name)}>
-														Add to Favorites
-													</button>
-												</div>
-											);
-										})}
-									</div>
-								);
-							}}
-						</div>
-						<div className="col bg-danger">HI</div>
-						<div className="col bg-info">HELLO</div>
-					</div>
-				</Context.Consumer>
-			</div>
-		);
+		return <div className="container">{this.props.toShowAfter.name}</div>;
 	}
 }
+
+Single.propTypes = {
+	toShowAfter: PropTypes.object
+};
