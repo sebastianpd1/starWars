@@ -5,15 +5,13 @@ import PropTypes from "prop-types";
 import "../../styles/demo.scss";
 
 export class Single extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			list: null,
-			single: null
-		};
-	}
 	render() {
-		return <div className="container">{this.props.toShowAfter.name}</div>;
+		return (
+			<div>
+				<div>{this.props.toShowAfter.name}</div>
+				<div>{this.props.toShowAfter}</div>;
+			</div>
+		);
 	}
 }
 

@@ -9,7 +9,6 @@ export class Home extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			list: null,
 			single: null
 		};
 	}
@@ -19,27 +18,22 @@ export class Home extends React.Component {
 	render() {
 		return (
 			<Context.Consumer>
-				{({ actions }) => {
+				{({ actions, store }) => {
 					return (
 						<div className="container">
 							<div className="row">
-								<div className="col-1" />
-								<div className="col-2">
-									<div className="row" onClick={() => this.setState({ list: "planets" })}>
-										Planets
-									</div>
-									<div className="row">People</div>
-									<div className="row">Vehicles</div>
-								</div>
-								{this.state.list && (
-									<div className="col-3">
+								{store.lists.map((level, i) => (
+									<div key={i} className="col-3">
 										<List
-											toShow={this.state.list}
-											setSingle={item => this.setState({ single: item })}
+											toShow={level}
+											onClick={item => {
+												if (i >= 3) this.setState({ single: item });
+												else actions.addNewListLevel(item.data);
+											}}
 											//setSingle={(item) => this.saveToState(item)}
 										/>
 									</div>
-								)}
+								))}
 								{this.state.single && (
 									<div className="col">
 										<Single toShowAfter={this.state.single} />

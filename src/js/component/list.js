@@ -11,10 +11,10 @@ export class List extends React.Component {
 				{({ store, actions }) => {
 					return (
 						<div>
-							{store[this.props.toShow].map((item, index) => {
+							{this.props.toShow.map((item, index) => {
 								return (
-									<div key={index} onClick={() => this.props.setSingle(item)}>
-										{item.name}
+									<div key={index} onClick={() => this.props.onClick(item)}>
+										{item.label}
 										<button
 											className="btn btn-success"
 											onClick={() => actions.addToFavorites(index, item)}>
@@ -32,6 +32,6 @@ export class List extends React.Component {
 }
 
 List.propTypes = {
-	toShow: PropTypes.string,
-	setSingle: PropTypes.func
+	toShow: PropTypes.array,
+	onClick: PropTypes.func
 };
