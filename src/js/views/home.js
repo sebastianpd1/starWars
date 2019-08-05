@@ -13,17 +13,17 @@ export class Home extends React.Component {
 			single: null
 		};
 	}
-
-	saveToState(item) {}
-
 	render() {
 		return (
 			<Context.Consumer>
-				{({ actions }) => {
+				{({ actions, store }) => {
+					// 	if (this.state.single) {
+					// 		actions.memory(this.state.single);
+					// 	}
 					return (
 						<div className="container">
 							<div className="row">
-								<div className="col-4">
+								<div className="col-1 bg-secondary text-white">
 									<div className="row" onClick={() => this.setState({ list: "planets" })}>
 										Planets
 									</div>
@@ -35,7 +35,7 @@ export class Home extends React.Component {
 									</div>
 								</div>
 								{this.state.list && (
-									<div className="col-4">
+									<div className="col-3 bg-dark text-white">
 										<List
 											toShow={this.state.list}
 											setSingle={item => this.setState({ single: item })}
@@ -44,7 +44,7 @@ export class Home extends React.Component {
 									</div>
 								)}
 								{this.state.single && (
-									<div className="col">
+									<div className="col bg-info text-white">
 										<Single toShowAfter={this.state.single} />
 									</div>
 								)}

@@ -13,7 +13,13 @@ export class Single extends React.Component {
 		};
 	}
 	render() {
-		return <div className="container">{this.props.toShowAfter.name}</div>;
+		return (
+			<div className="container">
+				{Object.keys(this.props.toShowAfter).map((key, i) => (
+					<div key={i}>{this.props.toShowAfter[key]}</div>
+				))}
+			</div>
+		);
 	}
 }
 

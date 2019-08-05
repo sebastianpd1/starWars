@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Estrella } from "./estrella";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import "../../styles/demo.scss";
@@ -18,10 +19,7 @@ export class List extends React.Component {
 											{item.name}
 										</div>
 										<div className="col">
-											<i
-												className="far fa-star"
-												onClick={() => actions.addToFavorites(index, item)}
-											/>
+											<Estrella theItem={item} />
 										</div>
 									</div>
 								);
