@@ -13,13 +13,16 @@ export class List extends React.Component {
 						<div>
 							{store[this.props.toShow].map((item, index) => {
 								return (
-									<div key={index} onClick={() => this.props.setSingle(item)}>
-										{item.name}
-										<button
-											className="btn btn-success"
-											onClick={() => actions.addToFavorites(index, item)}>
-											Add to Favorites
-										</button>
+									<div className="row" key={index}>
+										<div className="col" onClick={() => this.props.setSingle(item)}>
+											{item.name}
+										</div>
+										<div className="col">
+											<i
+												className="far fa-star"
+												onClick={() => actions.addToFavorites(index, item)}
+											/>
+										</div>
 									</div>
 								);
 							})}

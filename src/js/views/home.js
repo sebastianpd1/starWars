@@ -23,16 +23,19 @@ export class Home extends React.Component {
 					return (
 						<div className="container">
 							<div className="row">
-								<div className="col-1" />
-								<div className="col-2">
+								<div className="col-4">
 									<div className="row" onClick={() => this.setState({ list: "planets" })}>
 										Planets
 									</div>
-									<div className="row">People</div>
-									<div className="row">Vehicles</div>
+									<div className="row" onClick={() => this.setState({ list: "people" })}>
+										People
+									</div>
+									<div className="row" onClick={() => this.setState({ list: "vehicles" })}>
+										Vehicles
+									</div>
 								</div>
 								{this.state.list && (
-									<div className="col-3">
+									<div className="col-4">
 										<List
 											toShow={this.state.list}
 											setSingle={item => this.setState({ single: item })}
