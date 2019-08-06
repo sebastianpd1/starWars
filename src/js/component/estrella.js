@@ -28,7 +28,7 @@ export class Estrella extends React.Component {
 								<i
 									className="fas fa-star"
 									onClick={() => {
-										actions.deleteFromFavorites(this.props.theItem);
+										actions.deleteFromFavorites(this.props.theItem.name);
 									}}
 								/>
 							)}

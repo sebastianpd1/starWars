@@ -23,13 +23,17 @@ const getState = ({ getStore, setStore }) => {
 			},
 			deleteFromFavorites: item => {
 				const store = getStore();
+				let theIndex;
 				if (
 					store.favorites.find(e => {
-						return e == item.name;
+						return e == item;
 					})
 				) {
-					store.favorites.splice(item.name, 1);
+					theIndex = store.favorites.indexOf(item);
+					store.favorites.splice(theIndex, 1);
 					setStore({ favorites: store.favorites });
+				} else {
+					alert("this item has already been removed");
 				}
 			},
 			memory: level => {
